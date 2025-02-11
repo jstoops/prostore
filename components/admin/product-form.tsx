@@ -8,7 +8,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { ControllerRenderProps, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
 import slugify from 'slugify';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -115,6 +122,7 @@ const ProductForm = ({
                 <FormControl>
                   <Input placeholder='Enter product name' {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -149,6 +157,7 @@ const ProductForm = ({
                     </Button>
                   </div>
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -171,6 +180,7 @@ const ProductForm = ({
                 <FormControl>
                   <Input placeholder='Enter category' {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -191,6 +201,7 @@ const ProductForm = ({
                 <FormControl>
                   <Input placeholder='Enter brand' {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -213,6 +224,7 @@ const ProductForm = ({
                 <FormControl>
                   <Input placeholder='Enter product price' {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -233,6 +245,7 @@ const ProductForm = ({
                 <FormControl>
                   <Input placeholder='Enter product stock' {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -275,6 +288,7 @@ const ProductForm = ({
                     </div>
                   </CardContent>
                 </Card>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -348,6 +362,7 @@ const ProductForm = ({
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
