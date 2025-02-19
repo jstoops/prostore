@@ -10,7 +10,7 @@ import { revalidatePath } from 'next/cache';
 import { Prisma } from '@prisma/client';
 
 // Calculate cart prices
-const calcPrice = (items: CartItems[]) => {
+const calcPrice = (items: CartItem[]) => {
   const itemsPrice = round2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0)
     ),
