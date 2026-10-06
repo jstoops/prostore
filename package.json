@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "TZ=UTC jest",
+    "test:watch": "TZ=UTC jest --watch",
+    "test:coverage": "TZ=UTC jest --coverage",
     "email": "@powershell copy .env ./node_modules/react-email; email dev --dir email --port 3001"
   },
   "dependencies": {

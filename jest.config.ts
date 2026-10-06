@@ -22,15 +22,22 @@ const config: Config = {
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  collectCoverageFrom: [
+    'lib/**/*.{ts,tsx}',
+    'auth.ts',
+    'auth.config.ts',
+    'middleware.ts',
+    'hooks/use-toast.ts',
+    'email/index.tsx',
+    'app/api/webhooks/stripe/route.ts',
+    'app/api/uploadthing/core.ts',
+  ],
 
   // The directory where Jest should output its coverage files
-  // coverageDirectory: undefined,
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
+  coveragePathIgnorePatterns: ['/node_modules/', 'lib/uploadthing.ts'],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',
@@ -44,7 +51,14 @@ const config: Config = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 95,
+      lines: 98,
+      statements: 98,
+    },
+  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
@@ -90,7 +104,10 @@ const config: Config = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+    '^query-string$': '<rootDir>/tests/mocks/query-string.js',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -103,6 +120,21 @@ const config: Config = {
 
   // A preset that is used as a base for Jest's configuration
   preset: 'ts-jest',
+
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          jsx: 'react-jsx',
+          esModuleInterop: true,
+          strict: true,
+          isolatedModules: true,
+          moduleResolution: 'node',
+        },
+      },
+    ],
+  },
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -146,7 +178,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
