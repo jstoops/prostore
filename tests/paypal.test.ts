@@ -1,5 +1,13 @@
 import { generateAccessToken, paypal } from '../lib/paypal';
 
+// Live sandbox checks. Unit coverage of the client lives in paypal.unit.test.ts
+// so the suite still runs without PayPal credentials.
+const describeLive =
+  process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_APP_SECRET
+    ? describe
+    : describe.skip;
+
+describeLive('PayPal sandbox', () => {
 // Test to generate access token from paypal
 test('generate token from paypal', async () => {
   const tokenResponse = await generateAccessToken();
@@ -35,4 +43,5 @@ test('simulate capturing a payment from an order', async () => {
   expect(captureResponse).toHaveProperty('status', 'COMPLETED');
 
   mockCapturePayment.mockRestore();
+});
 });
